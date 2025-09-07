@@ -65,11 +65,7 @@ export default function App() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            handleLoadMore();
-          }
-        }
+        for (const e of entries) if (e.isIntersecting) handleLoadMore();
       },
       { root: null, rootMargin: "300px 0px 300px 0px", threshold: 0 }
     );
@@ -83,7 +79,7 @@ export default function App() {
     <div className={styles.app}>
       <SearchBar onSubmit={handleSearch} />
 
-      <div ref={gridTopRef} />
+      <div ref={gridTopRef} className={styles.gridTop} />
 
       {isLoading && movies.length === 0 && <Loader />}
       {!isLoading && hasError && <ErrorMessage />}
